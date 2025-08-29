@@ -14,7 +14,5 @@ jobs:
         with:
           url: ${{ secrets.SUPABASE_EDGE_URL }}
           method: POST
-          customHeaders: |
-            apikey: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-            Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          customHeaders: '{"apikey":"${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}","Authorization":"Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}"}'
           timeout: 60000
