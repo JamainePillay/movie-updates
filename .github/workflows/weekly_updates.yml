@@ -1,0 +1,20 @@
+name: Weekly Supabase Update
+
+on:
+  schedule:
+    - cron: "0 0 * * 0" # every Sunday
+  workflow_dispatch:
+
+jobs:
+  update_movies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Supabase Edge Function
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: ${{ secrets.SUPABASE_EDGE_URL }}
+          method: POST
+          customHeaders: |
+            apikey: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+            Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          timeout: 60000
